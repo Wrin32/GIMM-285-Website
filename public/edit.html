@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>            
+        <title>Edit Artwork Record</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+            <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1>Edit Artwork Record</h1>
+            <hr/>
+            <div id='messageBox' class='alert' style='display:none;'></div>
+            
+            <form id='artworkForm'>
+                <h3>Information Given to AI</h3>
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Artist Experience Level:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <select id='experience' name='experience_level' required>
+                            <option value=''></option>
+                            <option value='Limited'>Very Limited or No Experience</option>
+                            <option value='Basic'>Basic Knowledge</option>
+                            <option value='Competent'>Competent</option>
+                            <option value='Skilled'>Skilled</option>
+                            <option value='Proficient'>Proficient</option>
+                            <option value='Expert'>Expert</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Number of Subjects:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <input id='subjects' name='number_of_subjects' type='number' min='1' max='10' required/>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Output Length:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <select id='outputLength' name='output_length' required>
+                            <option value=''></option>
+                            <option value='Short'>Short</option>
+                            <option value='Medium'>Medium</option>
+                            <option value='Long'>Long</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Detailed Description Selection:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <div><label><input type="checkbox" name="details" value="composition" id='composition'>  Composition</label></div>
+                        <div><label><input type="checkbox" name="details" value="storytelling" id='storytelling'>  Storytelling</label></div>
+                        <div><label><input type="checkbox" name="details" value="perspective" id='perspective'>  Perspective</label></div>
+                        <div><label><input type="checkbox" name="details" value="lighting" id='lighting'>  Lighting</label></div>
+                        <div><label><input type="checkbox" name="details" value="posing" id='posing'>  Posing</label></div>
+                        <div><label><input type="checkbox" name="details" value="style" id='style'>  Style Direction</label></div>
+                        <div><label><input type="checkbox" name="details" value="elements" id='elements'>  Elements of Art</label></div>
+                        <div><label><input type="checkbox" name="details" value="principles" id='principles'>  Principles of Art</label></div>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Idea Description:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <textarea id='idea' name='idea_description' placeholder='Enter idea description' required></textarea>
+                    </div>
+                </div>
+
+                <br>
+
+                <h2>Information on created Artwork</h2>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Number of Drafts/Thumbnails:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <input id='drafts' name='number_of_drafts' type='number' min='0' max='100' required/>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-3'>
+                        <label>Level of Completion:</label>
+                    </div>
+                    <div class='col-md-9'>
+                        <div><label><input type="checkbox" name="level" value="draft" id='draft'>  Draft</label></div>
+                        <div><label><input type="checkbox" name="level" value="sketch" id='sketch'>  Sketch</label></div>
+                        <div><label><input type="checkbox" name="level" value="lineart" id='lineart'>  Line Art</label></div>
+                        <div><label><input type="checkbox" name="level" value="basic_colors" id="basicColors">  Basic Colors</label></div>
+                        <div><label><input type="checkbox" name="level" value="cell_shading" id="cellShading">  Cell Shading</label></div>
+                        <div><label><input type="checkbox" name="level" value="some_shading" id="someShading">  Some Shading</label></div>
+                        <div><label><input type="checkbox" name="level" value="full_shading" id="fullyShading">  Full Shading</label></div>
+                        <div><label><input type="checkbox" name="level" value="fully_rendered" id="fullRender">  Fully Rendered</label></div>
+                        <div><label><input type="checkbox" name="level" value="simple_background" id="simpleBG">  Simple Background</label></div>
+                        <div><label><input type="checkbox" name="level" value="detailed_background" id="detailedBG">  Detailed Background</label></div>
+                        <div><label><input type="checkbox" name="level" value="painterly_style" id="painterStyle">  Painterly Style</label></div>
+                        <div><label><input type="checkbox" name="level" value="3d_digital_scene" id="3dDigitalScene">  3D Digital Scene</label></div>
+                        <div><label><input type="checkbox" name="level" value="physical_artwork" id="physicalArtwork">  Physical Artwork</label></div>
+                        <div><label><input type="checkbox" name="level" value="3d_physical_artwork" id="3dPhysicalArtwork">  3D Physical Artwork</label></div>
+                    </div>
+                </div>
+
+                <div class='row mb-3'>
+                    <div class='col-md-12'>
+                        <button type='submit' class='btn btn-primary me-2'>Update Artwork</button>
+                        <a href='index.html' class='btn btn-secondary'>Back to Records</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            const isEmpty = (obj) => Object.keys(obj).length === 0;
+            const urlParams = new URLSearchParams(window.location.search);
+            const recordId = urlParams.get('id');
+
+            if (!recordId) {
+                document.getElementById('messageBox').className = 'alert alert-danger';
+                document.getElementById('messageBox').textContent = 'No record ID provided.';
+                document.getElementById('messageBox').style.display = 'block';
+            } else {
+                // Fetch the record data
+                fetch('/artwork/' + recordId + '/', { method: 'GET' })
+                    .then((response) => {
+                        return new Promise((resolve) => response.json()
+                            .then((json) => resolve({
+                                status: response.status,
+                                json,
+                            })
+                        ));
+                    })
+                    .then(({ status, json }) => {
+                        if (status === 200 && json.data && json.data[0]) {
+                            const record = json.data[0];
+                            // Populate form fields
+                            document.getElementById('experience').value = record.experience_level;
+                            document.getElementById('subjects').value = record.number_of_subjects;
+                            document.getElementById('outputLength').value = record.output_length;
+                            document.getElementById('idea').value = record.idea_description;
+                            document.getElementById('drafts').value = record.number_of_drafts;
+
+                            // Check description checkboxes
+                            if (record.has_composition) document.getElementById('composition').checked = true;
+                            if (record.has_storytelling) document.getElementById('storytelling').checked = true;
+                            if (record.has_perspective) document.getElementById('perspective').checked = true;
+                            if (record.has_lighting) document.getElementById('lighting').checked = true;
+                            if (record.has_posing) document.getElementById('posing').checked = true;
+                            if (record.has_style_direction) document.getElementById('style').checked = true;
+                            if (record.has_elements_of_art) document.getElementById('elements').checked = true;
+                            if (record.has_principles_of_art) document.getElementById('principles').checked = true;
+
+                            // Check completion checkboxes
+                            if (record.has_draft) document.getElementById('draft').checked = true;
+                            if (record.has_sketch) document.getElementById('sketch').checked = true;
+                            if (record.has_lineart) document.getElementById('lineart').checked = true;
+                            if (record.has_basic_colors) document.getElementById('basicColors').checked = true;
+                            if (record.has_cell_shading) document.getElementById('cellShading').checked = true;
+                            if (record.has_some_shading) document.getElementById('someShading').checked = true;
+                            if (record.has_full_shading) document.getElementById('fullyShading').checked = true;
+                            if (record.has_fully_rendered) document.getElementById('fullRender').checked = true;
+                            if (record.has_simple_background) document.getElementById('simpleBG').checked = true;
+                            if (record.has_detailed_background) document.getElementById('detailedBG').checked = true;
+                            if (record.has_painterly_style) document.getElementById('painterStyle').checked = true;
+                            if (record.has_3d_digital_scene) document.getElementById('3dDigitalScene').checked = true;
+                            if (record.has_physical_artwork) document.getElementById('physicalArtwork').checked = true;
+                            if (record.has_3d_physical_artwork) document.getElementById('3dPhysicalArtwork').checked = true;
+                        } else {
+                            document.getElementById('messageBox').className = 'alert alert-danger';
+                            document.getElementById('messageBox').textContent = 'Record not found.';
+                            document.getElementById('messageBox').style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('messageBox').className = 'alert alert-danger';
+                        document.getElementById('messageBox').textContent = 'Error loading record.';
+                        document.getElementById('messageBox').style.display = 'block';
+                    });
+            }
+
+            // Handle form submission
+            document.getElementById('artworkForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const params = new URLSearchParams();
+
+                const experience = document.getElementById('experience').value;
+                const subjects = document.getElementById('subjects').value;
+                const outputLength = document.getElementById('outputLength').value;
+                const ideaDescription = document.getElementById('idea').value;
+                const drafts = document.getElementById('drafts').value;
+
+                if (!experience || !subjects || !outputLength || !ideaDescription || drafts === '') {
+                    showMessage('Please fill in all required fields', 'danger');
+                    return;
+                }
+
+                params.append('experience_level', experience);
+                params.append('number_of_subjects', subjects);
+                params.append('output_length', outputLength);
+                params.append('idea_description', ideaDescription);
+                params.append('number_of_drafts', drafts);
+
+                // Collect details checkboxes
+                document.querySelectorAll('input[name="details"]:checked').forEach(checkbox => {
+                    params.append('has_' + checkbox.value, '1');
+                });
+
+                // Collect completion level checkboxes
+                document.querySelectorAll('input[name="level"]:checked').forEach(checkbox => {
+                    params.append('has_' + checkbox.value, '1');
+                });
+
+                try {
+                    const response = await fetch('/artwork/' + recordId + '/', {
+                        method: 'PUT',
+                        body: params
+                    });
+
+                    const json = await response.json();
+
+                    if (response.status === 200) {
+                        showMessage('Artwork record updated successfully!', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    } else if (response.status === 400) {
+                        let errorMessage = json.message + '\n';
+                        if (json.errors && json.errors.length > 0) {
+                            errorMessage += json.errors.map(err => err.msg).join('\n');
+                        }
+                        showMessage(errorMessage, 'danger');
+                    } else {
+                        showMessage(json.message || 'Error updating record', 'danger');
+                    }
+                } catch (error) {
+                    showMessage('Error: ' + error.message, 'danger');
+                    console.error('Error:', error);
+                }
+            });
+
+            function showMessage(message, type) {
+                const messageBox = document.getElementById('messageBox');
+                messageBox.className = 'alert alert-' + type;
+                messageBox.textContent = message;
+                messageBox.style.display = 'block';
+            }
+        </script>
+    </body>
+</html>

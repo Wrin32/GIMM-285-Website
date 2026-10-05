@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Art Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+   
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            Artwork Tracker: Add New Artwork Record
+        </h1>
+            <hr/>
+            <h2>Information Given to AI</h2>
+            <div id='messageBox' class='alert' style='display:none;'></div>
+            <form id='artworkForm'>
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Artist Experience Level:</label>
+            </div>
+            <div class='col-md-9'>
+                <select id='experience'>
+                    <option value=''></option>
+                    <option value='Limited'>Very Limited or No Experience</option>
+                    <option value='Basic'>Basic Knowledge</option>
+                    <option value='Competent'>Competent</option>
+                    <option value='Skilled'>Skilled</option>
+                    <option value='Proficient'>Proficient</option>
+                    <option value='Expert'>Expert</option>
+                </select>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Number of Subjects:</label>
+            </div>
+            <div class='col-md-9'>
+                <input id='subjects' type='number' min='1' max='10'/>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Output Length:</label>
+            </div>
+            <div class='col-md-9'>
+                <select id='outputLength'>
+                    <option value=''></option>
+                    <option value='Short'>Short</option>
+                    <option value='Medium'>Medium</option>
+                    <option value='Long'>Long</option>
+                </select>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Detailed Description Selection:</label>
+            </div>
+            <div class='col-md-9'>
+                <div><label><input type="checkbox" name="details" value="composition">  Composition</label></div>
+                <div><label><input type="checkbox" name="details" value="storytelling">  Storytelling</label></div>
+                <div><label><input type="checkbox" name="details" value="perspective">  Perspective</label></div>
+                <div><label><input type="checkbox" name="details" value="lighting">  Lighting</label></div>
+                <div><label><input type="checkbox" name="details" value="posing">  Posing</label></div>
+                <div><label><input type="checkbox" name="details" value="style">  Style Direction</label></div>
+                <div><label><input type="checkbox" name="details" value="elements">  Elements of Art</label></div>
+                <div><label><input type="checkbox" name="details" value="principles">  Principles of Art</label></div>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Idea Description:</label>
+            </div>
+            <div class='col-md-9'>
+                <textarea id='idea' placeholder='Enter idea description'></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <h2>Information on created Artwork</h2>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Number of Drafts/Thumbnails (Equivalent to Sketches):</label>
+            </div>
+            <div class='col-md-9'>
+                <input id='drafts' type='number' min='0' max='100'/>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Level of Completion (What has been done for the artwork):</label>
+            </div>
+                <div class='col-md-9'>
+                    <div><label><input type="checkbox" name="level" value="draft">  Draft</label></div>
+                    <div><label><input type="checkbox" name="level" value="sketch">  Sketch</label></div>
+                    <div><label><input type="checkbox" name="level" value="lineart">  Line Art</label></div>
+                    <div><label><input type="checkbox" name="level" value="basic_colors" id="basicColors">  Basic Colors</label></div>
+                    <div><label><input type="checkbox" name="level" value="cell_shading" id="cellShading">  Cell Shading</label></div>
+                    <div><label><input type="checkbox" name="level" value="some_shading" id="someShading">  Some Shading</label></div>
+                    <div><label><input type="checkbox" name="level" value="full_shading" id="fullyShading">  Full Shading</label></div>
+                    <div><label><input type="checkbox" name="level" value="fully_rendered" id="fullRender">  Fully Rendered</label></div>
+                    <div><label><input type="checkbox" name="level" value="simple_background" id="simpleBG">  Simple Background</label></div>
+                    <div><label><input type="checkbox" name="level" value="detailed_background" id="detailedBG">  Detailed Background</label></div>
+                    <div><label><input type="checkbox" name="level" value="painterly_style" id="painterStyle">  Painterly Style</label></div>
+                    <div><label><input type="checkbox" name="level" value="3d_digital_scene" id="3dDigitalScene">  3D Digital Scene</label></div>
+                    <div><label><input type="checkbox" name="level" value="physical_artwork" id="physicalArtwork">  Physical Artwork</label></div>
+                    <div><label><input type="checkbox" name="level" value="3d_physical_artwork" id="3dPhysicalArtwork">  3D Physical Artwork</label></div>
+                </div>
+            </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-12'>
+                <button type='submit' id='addArtwork' class='btn btn-success me-2'>Add New Artwork</button>
+                <button type='button' id='clearForm' class='btn btn-secondary me-2'>Clear Form</button>
+                <a href='index.html' class='btn btn-primary'>Back to Records</a>
+            </div>
+        </div>
+
+         <h2>Search & Filter Artwork</h2>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Limit Results To:</label>
+            </div>
+            <div class='col-md-9'>
+                <select id='limit'>
+                    <option value='10' selected>10 Rows (Default)</option>
+                    <option value='25'>25 Rows</option>
+                    <option value='50'>50 Rows</option>
+                    <option value='100'>100 Rows</option>
+                </select>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-3'>
+                <label>Sort By?</label>
+            </div>
+            <div class='col-md-9'>
+                <select id='sort'>
+                    <option value=''></option>
+                    <option value='SORTBYEX'>Sort by Experience Level</option>
+                    <option value='SORTBYOUT'>Sort by Output Length</option>
+                    <option value='NUMASC'>Number of Subjects Ascending</option>
+                    <option value='NUMDESC'>Number of Subjects Descending</option>
+                </select>
+            </div>
+        </div>
+
+        <div class='row mb-3'>
+            <div class='col-md-12'>
+                <button type='button' id='searchArt' class='btn btn-primary'>Search for Art Statistics</button>
+            </div>
+        </div>
+        </form>
+
+        <hr />
+        <div id='results' class='overflow'>
+            Art statistics go here.
+        </div>
+    </div>
+
+    <script>
+        const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+        // Clear form button
+        document.getElementById('clearForm').addEventListener('click', () => {
+            document.getElementById('artworkForm').reset();
+            document.getElementById('messageBox').style.display = 'none';
+        });
+
+        // Add new artwork form submission
+        document.getElementById('artworkForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            // Use URLSearchParams to store form data
+            const params = new URLSearchParams();
+
+            // Collect basic info
+            const experience = document.getElementById('experience').value;
+            const subjects = document.getElementById('subjects').value;
+            const outputLength = document.getElementById('outputLength').value;
+            const ideaDescription = document.getElementById('idea').value;
+            const drafts = document.getElementById('drafts').value;
+
+            // Validate required fields
+            if (!experience || !subjects || !outputLength || !ideaDescription || drafts === '') {
+                showMessage('Please fill in all required fields', 'danger');
+                return;
+            }
+
+            params.append('experience_level', experience);
+            params.append('number_of_subjects', subjects);
+            params.append('output_length', outputLength);
+            params.append('idea_description', ideaDescription);
+            params.append('number_of_drafts', drafts);
+
+            // Collect details checkboxes
+            document.querySelectorAll('input[name="details"]:checked').forEach(checkbox => {
+                params.append('has_' + checkbox.value, '1');
+            });
+
+            // Collect completion level checkboxes
+            document.querySelectorAll('input[name="level"]:checked').forEach(checkbox => {
+                params.append('has_' + checkbox.value, '1');
+            });
+
+            try {
+                const response = await fetch('/artwork/', {
+                    method: 'POST',
+                    body: params
+                });
+
+                const json = await response.json();
+
+                if (response.status === 201) {
+                    showMessage('Artwork record added successfully! ID: ' + json.id, 'success');
+                    document.getElementById('artworkForm').reset();
+                    // Optionally search to show new record
+                    setTimeout(() => {
+                        document.getElementById('searchArt').click();
+                    }, 1000);
+                } else {
+                    showMessage(json.message || 'Error adding record', 'danger');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'danger');
+                console.error('Error:', error);
+            }
+        });
+
+        function showMessage(message, type) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.className = 'alert alert-' + type;
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+        }
+
+        document.getElementById('searchArt').addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const getParameters = {};
+
+            if (document.getElementById('experience').value) {
+                getParameters.experience = document.getElementById('experience').value;
+            }
+
+            if (document.getElementById('subjects').value) {
+                getParameters.subjects = document.getElementById('subjects').value;
+            }
+
+            if (document.getElementById('outputLength').value) {
+                getParameters.outputLength = document.getElementById('outputLength').value;
+            }
+
+            if (document.getElementById('limit').value) {
+                getParameters.limit = document.getElementById('limit').value;
+            }
+
+            if (document.getElementById('sort').value) {
+                getParameters.sort = document.getElementById('sort').value;
+            }
+
+            // Collect limit preference
+            if (document.getElementById('limit').value.length !== 0) {
+                getParameters.limit = document.getElementById('limit').value;
+            }
+
+            // Collect sort preference
+            if (document.getElementById('sort').value.length !== 0) {
+                getParameters.sort = document.getElementById('sort').value;
+            }
+
+            //Settings for FETCH API request
+            let fetchSettings = {
+                method: 'GET'
+            };
+
+            //Send FETCH API request
+            fetch("/artwork/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+                .then((response) => {
+                    return new Promise((resolve) => response.json()
+                        .then((json) => resolve({
+                            status: response.status,
+                            json,
+                        })
+                        ));
+                })
+                //Logic to display results
+                .then(({ status, json }) => {
+                    if (status === 200) {
+                        let displayTable = '<table class="table table-striped table-sm">' +
+                            '<thead>' +
+                            '<tr>' +
+                            '<th>ID</th>' +
+                            '<th>Experience Level</th>' +
+                            '<th>Number of Subjects</th>' +
+                            '<th>Output Length</th>' +
+                            '<th>Composition</th>' +
+                            '<th>Storytelling</th>' +
+                            '<th>Perspective</th>' +
+                            '<th>Lighting</th>' +
+                            '<th>Posing</th>' +
+                            '<th>Style Direction</th>' +
+                            '<th>Elements of Art</th>' +
+                            '<th>Principles of Art</th>' +
+                            '<th>Idea Description</th>' +
+                            '<th>Number of Drafts</th>' +
+                            '<th>Draft</th>' +
+                            '<th>Sketch</th>' +
+                            '<th>Line Art</th>' +
+                            '<th>Basic Colors</th>' +
+                            '<th>Cell Shading</th>' +
+                            '<th>Some Shading</th>' +
+                            '<th>Full Shading</th>' +
+                            '<th>Fully Rendered</th>' +
+                            '<th>Simple Background</th>' +
+                            '<th>Detailed Background</th>' +
+                            '<th>Painterly Style</th>' +
+                            '<th>3D Digital Scene</th>' +
+                            '<th>Physical Artwork</th>' +
+                            '<th>3D Physical Artwork</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '<tbody>';
+                        if (typeof json.data !== 'undefined' && json.data.length > 0) {
+                            for (const row of json.data) {
+                                displayTable += '<tr>' +
+                                    '<td>' + row.id + '</td>' +
+                                    '<td>' + row.experience_level + '</td>' +
+                                    '<td>' + row.number_of_subjects + '</td>' +
+                                    '<td>' + row.output_length + '</td>' +
+                                    '<td>' + (row.has_composition ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_storytelling ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_perspective ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_lighting ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_posing ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_style_direction ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_elements_of_art ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_principles_of_art ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.idea_description || 'N/A') + '</td>' +
+                                    '<td>' + row.number_of_drafts + '</td>' +
+                                    '<td>' + (row.has_draft ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_sketch ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_lineart ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_basic_colors ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_cell_shading ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_some_shading ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_full_shading ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_fully_rendered ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_simple_background ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_detailed_background ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_painterly_style ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_3d_digital_scene ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_physical_artwork ? 'Yes' : 'No') + '</td>' +
+                                    '<td>' + (row.has_3d_physical_artwork ? 'Yes' : 'No') + '</td>' +
+                                    '</tr>';
+                            }
+                        } else {
+                            displayTable += '<tr><td colspan="28">No artwork found.</td></tr>';
+                        }
+                        displayTable += '</tbody></table>';
+                        document.getElementById('results').innerHTML = displayTable;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });               
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Art Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        
+    <link rel="stylesheet" type="text/css" href="indexStyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            Artwork Tracker
+        </h1>
+        <hr/>
+        <h2>Existing Artwork Records</h2>
+        <div id='records-container'></div>
+        <hr/>
+    </div>
+
+    <div class='row mb-3'>
+        <div class='col-md-3'></div>
+        <div class='col-md-3'>
+            <p><a href='insert.html' class='btn btn-primary'>Add New Artwork Record</a></p>
+        </div>
+        <!-- <div class='col-md-3'>
+            <button type='button' id='searchArt' class='btn btn-primary'>Search for Art Statistics</button>
+        </div>
+    </div>
+    <div class='row mb-3'>
+        <div class='col-md-3'></div>
+        <div class='col-md-3'>
+            <label>Limit Results To:</label>
+        </div>
+        <div class='col-md-3'>
+            <select id='limit'>
+                <option value='10' selected>10 Rows (Default)</option>
+                <option value='25'>25 Rows</option>
+                <option value='50'>50 Rows</option>
+                <option value='100'>100 Rows</option>
+            </select>
+        </div>
+    </div>
+
+    <div class='row mb-3'>
+        <div class='col-md-3'></div>
+        <div class='col-md-3'>
+            <label>Sort By?</label>
+        </div>
+        <div class='col-md-3'>
+            <select id='sort'>
+                <option value=''></option>
+                <option value='SORTBYEX'>Sort by Experience Level</option>
+                <option value='SORTBYOUT'>Sort by Output Length</option>
+                <option value='NUMASC'>Number of Subjects Ascending</option>
+                <option value='NUMDESC'>Number of Subjects Descending</option>
+            </select>
+        </div>
+    </div> -->
+    </form>
+
+        <hr />
+        <!-- <div id='results' class='overflow'>
+            ========================================= Art statistics go here. =========================================
+        </div> -->
+    </div>
+
+    <script>
+        // Fetch and display all artwork records on page load
+        fetch('/artwork/?limit=100', { method: 'GET' })
+            .then((response) => {
+                return new Promise((resolve) => response.json()
+                    .then((json) => resolve({
+                        status: response.status,
+                        json,
+                    })
+                ));
+            })
+            .then(({ status, json }) => {
+                console.log(status, json);
+                if (200 === status) {
+                    const recordsContainer = document.getElementById('records-container');
+                    if (json.data && json.data.length > 0) {
+                        let recordsHTML = '<table class="table table-striped"><thead><tr>';
+                        recordsHTML += '<th>ID</th><th>Experience</th><th>Subjects</th><th>Output Length</th><th>Idea</th><th>Drafts</th><th>Actions</th>';
+                        recordsHTML += '</tr></thead><tbody>';
+                        
+                        for (let record of json.data) {
+                            recordsHTML += '<tr>';
+                            recordsHTML += '<td>' + record.id + '</td>';
+                            recordsHTML += '<td>' + record.experience_level + '</td>';
+                            recordsHTML += '<td>' + record.number_of_subjects + '</td>';
+                            recordsHTML += '<td>' + record.output_length + '</td>';
+                            recordsHTML += '<td>' + (record.idea_description.substring(0, 50) + '...') + '</td>';
+                            recordsHTML += '<td>' + record.number_of_drafts + '</td>';
+                            recordsHTML += '<td><a href="edit.html?id=' + record.id + '" class="btn btn-sm btn-warning">Edit</a></td>';
+                            recordsHTML += '</tr>';
+                        }
+                        recordsHTML += '</tbody></table>';
+                        recordsContainer.innerHTML = recordsHTML;
+                    } else {
+                        recordsContainer.innerHTML = '<p>No artwork records found. <a href="insert.html">Create one now!</a></p>';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('records-container').innerHTML = '<p class="text-danger">Error loading records.</p>';
+            });
+
+        //     document.getElementById('searchArt').addEventListener('click', (event) => {
+        //     event.preventDefault();
+
+        //     const getParameters = {};
+
+        //     if (document.getElementById('experience').value) {
+        //         getParameters.experience = document.getElementById('experience').value;
+        //     }
+
+        //     if (document.getElementById('subjects').value) {
+        //         getParameters.subjects = document.getElementById('subjects').value;
+        //     }
+
+        //     if (document.getElementById('outputLength').value) {
+        //         getParameters.outputLength = document.getElementById('outputLength').value;
+        //     }
+
+        //     if (document.getElementById('limit').value) {
+        //         getParameters.limit = document.getElementById('limit').value;
+        //     }
+
+        //     if (document.getElementById('sort').value) {
+        //         getParameters.sort = document.getElementById('sort').value;
+        //     }
+
+        //     // Collect limit preference
+        //     if (document.getElementById('limit').value.length !== 0) {
+        //         getParameters.limit = document.getElementById('limit').value;
+        //     }
+
+        //     // Collect sort preference
+        //     if (document.getElementById('sort').value.length !== 0) {
+        //         getParameters.sort = document.getElementById('sort').value;
+        //     }
+
+        //     //Settings for FETCH API request
+        //     let fetchSettings = {
+        //         method: 'GET'
+        //     };
+
+        //     //Send FETCH API request
+        //     fetch("/artwork/" + (!isEmpty(getParameters) ? '?' + new URLSearchParams(getParameters) : ''), fetchSettings)
+        //         .then((response) => {
+        //             return new Promise((resolve) => response.json()
+        //                 .then((json) => resolve({
+        //                     status: response.status,
+        //                     json,
+        //                 })
+        //                 ));
+        //         })
+        //         //Logic to display results
+        //         .then(({ status, json }) => {
+        //             if (status === 200) {
+        //                 let displayTable = '<table class="table table-striped table-sm">' +
+        //                     '<thead>' +
+        //                     '<tr>' +
+        //                     '<th>ID</th>' +
+        //                     '<th>Experience Level</th>' +
+        //                     '<th>Number of Subjects</th>' +
+        //                     '<th>Output Length</th>' +
+        //                     '<th>Composition</th>' +
+        //                     '<th>Storytelling</th>' +
+        //                     '<th>Perspective</th>' +
+        //                     '<th>Lighting</th>' +
+        //                     '<th>Posing</th>' +
+        //                     '<th>Style Direction</th>' +
+        //                     '<th>Elements of Art</th>' +
+        //                     '<th>Principles of Art</th>' +
+        //                     '<th>Idea Description</th>' +
+        //                     '<th>Number of Drafts</th>' +
+        //                     '<th>Draft</th>' +
+        //                     '<th>Sketch</th>' +
+        //                     '<th>Line Art</th>' +
+        //                     '<th>Basic Colors</th>' +
+        //                     '<th>Cell Shading</th>' +
+        //                     '<th>Some Shading</th>' +
+        //                     '<th>Full Shading</th>' +
+        //                     '<th>Fully Rendered</th>' +
+        //                     '<th>Simple Background</th>' +
+        //                     '<th>Detailed Background</th>' +
+        //                     '<th>Painterly Style</th>' +
+        //                     '<th>3D Digital Scene</th>' +
+        //                     '<th>Physical Artwork</th>' +
+        //                     '<th>3D Physical Artwork</th>' +
+        //                     '</tr>' +
+        //                     '</thead>' +
+        //                     '<tbody>';
+        //                 if (typeof json.data !== 'undefined' && json.data.length > 0) {
+        //                     for (const row of json.data) {
+        //                         displayTable += '<tr>' +
+        //                             '<td>' + row.id + '</td>' +
+        //                             '<td>' + row.experience_level + '</td>' +
+        //                             '<td>' + row.number_of_subjects + '</td>' +
+        //                             '<td>' + row.output_length + '</td>' +
+        //                             '<td>' + (row.has_composition ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_storytelling ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_perspective ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_lighting ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_posing ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_style_direction ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_elements_of_art ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_principles_of_art ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.idea_description || 'N/A') + '</td>' +
+        //                             '<td>' + row.number_of_drafts + '</td>' +
+        //                             '<td>' + (row.has_draft ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_sketch ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_lineart ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_basic_colors ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_cell_shading ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_some_shading ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_full_shading ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_fully_rendered ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_simple_background ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_detailed_background ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_painterly_style ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_3d_digital_scene ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_physical_artwork ? 'Yes' : 'No') + '</td>' +
+        //                             '<td>' + (row.has_3d_physical_artwork ? 'Yes' : 'No') + '</td>' +
+        //                             '</tr>';
+        //                     }
+        //                 } else {
+        //                     displayTable += '<tr><td colspan="28">No artwork found.</td></tr>';
+        //                 }
+        //                 displayTable += '</tbody></table>';
+        //                 document.getElementById('results').innerHTML = displayTable;
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+        // });               
+    </script>
+</body>
+
+</html>

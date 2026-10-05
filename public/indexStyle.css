@@ -1,0 +1,88 @@
+/** Grid system - https://www.w3schools.com/css/css_rwd_grid.asp **/
+
+/* =========================
+   DARK MODE BASE
+========================= */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Containers */
+.container {
+    background-color: transparent;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    color: #ffffff;
+}
+
+/* Forms */
+input,
+select,
+textarea {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4dabf7;
+    box-shadow: 0 0 0 2px rgba(77, 171, 247, 0.25);
+}
+
+/* Labels */
+label {
+    color: #cccccc;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #4dabf7;
+    border-color: #4dabf7;
+}
+
+.btn-primary:hover {
+    background-color: #339af0;
+    border-color: #339af0;
+}
+
+.btn-secondary {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+/* Alerts */
+.alert {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+.alert-success {
+    border-color: #2f9e44;
+}
+
+.alert-danger {
+    border-color: #e03131;
+}
+
+/* Links */
+a {
+    color: #4dabf7;
+}
+
+a:hover {
+    color: #74c0fc;
+}
+
+/* Form spacing cleanup */
+textarea {
+    width: 100%;
+    min-height: 120px;
+}

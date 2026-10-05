@@ -1,0 +1,405 @@
+/** Grid system - https://www.w3schools.com/css/css_rwd_grid.asp **/
+* {
+    box-sizing: border-box;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+ 
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/** Image - https://www.w3schools.com/css/css_rwd_grid.asp **/   
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/** Overflow (for tables) - https://www.w3schools.com/howto/howto_css_table_responsive.asp **/
+.overflow {
+    overflow-x:auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+th {
+    width: 33.3%
+}
+
+/* =========================
+   DARK MODE BASE
+========================= */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Containers */
+.container {
+    background-color: transparent;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    color: #ffffff;
+}
+
+/* Forms */
+input,
+select,
+textarea {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4dabf7;
+    box-shadow: 0 0 0 2px rgba(77, 171, 247, 0.25);
+}
+
+/* Labels */
+label {
+    color: #cccccc;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #4dabf7;
+    border-color: #4dabf7;
+}
+
+.btn-primary:hover {
+    background-color: #339af0;
+    border-color: #339af0;
+}
+
+.btn-secondary {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+/* Alerts */
+.alert {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+.alert-success {
+    border-color: #2f9e44;
+}
+
+.alert-danger {
+    border-color: #e03131;
+}
+
+/* Links */
+a {
+    color: #4dabf7;
+}
+
+a:hover {
+    color: #74c0fc;
+}
+
+/* Form spacing cleanup */
+textarea {
+    width: 100%;
+    min-height: 120px;
+}
+
+/* =========================
+   1. GLOBAL BASE STYLES
+========================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #0f1115;
+    color: #e6e6e6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Links */
+a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   2. FORM ELEMENTS
+========================= */
+
+select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #2c2f3a;
+    background-color: #1a1d24;
+    color: #ffffff;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #4da3ff;
+    box-shadow: 0 0 6px rgba(77,163,255,0.4);
+}
+
+/* Buttons */
+button, .btn {
+    border-radius: 6px;
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #4da3ff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #2f8de0;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+}
+
+.btn-warning {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #d4ac0d;
+}
+
+.btn-secondary {
+    background-color: #555;
+}
+
+.btn-secondary:hover {
+    background-color: #666;
+}
+
+/* =========================
+   3. ALERT SYSTEM
+========================= */
+
+.alert {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    background-color: #1e3d2f;
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.alert-danger {
+    background-color: #3d1e1e;
+    color: #ff5c5c;
+    border: 1px solid #ff5c5c;
+}
+
+/* =========================
+   4. TABLE WRAPPER (IMPORTANT)
+========================= */
+
+.overflow {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #2c2f3a;
+}
+
+/* =========================
+   5. MAIN TABLE STYLING (FOCUS AREA)
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+    background-color: #151821;
+}
+
+/* Header */
+table thead {
+    background-color: #1f2430;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+table thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #2c2f3a;
+}
+
+/* Rows */
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #2c2f3a;
+    font-size: 14px;
+}
+
+/* Alternating rows */
+table tbody tr:nth-child(even) {
+    background-color: #1a1d24;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #14171d;
+}
+
+/* Hover effect */
+table tbody tr:hover {
+    background-color: #242a38;
+    transition: 0.15s ease-in-out;
+}
+
+/* =========================
+   6. TABLE DATA STATES
+========================= */
+
+td {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Idea column override (more readable) */
+td:nth-child(5) {
+    max-width: 300px;
+    white-space: normal;
+}
+
+/* Yes/No styling */
+td:contains("Yes") {
+    color: #2ecc71;
+}
+
+td:contains("No") {
+    color: #ff5c5c;
+}
+
+/* =========================
+   7. GRID / LAYOUT SPACING
+========================= */
+
+.row {
+    margin-bottom: 12px;
+}
+
+.col-md-3, .col-md-9, .col-md-12 {
+    padding: 6px;
+}
+
+/* =========================
+   8. RESULTS PANEL
+========================= */
+
+#results {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #0f1115;
+}
+
+/* =========================
+   9. SCROLLBAR (nice touch)
+========================= */
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1d24;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4da3ff;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2f8de0;
+}
+
+/* =========================
+   10. RESPONSIVE TABLE TWEAK
+========================= */
+
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+
+    td, th {
+        padding: 6px;
+    }
+}
