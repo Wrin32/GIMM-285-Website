@@ -220,5 +220,5 @@ app.put(
 );
 
 app.listen(port, () => {
-    console.log('Server running on port ${port}');
+    console.log(`Application listening on port:${port}`);
 });
