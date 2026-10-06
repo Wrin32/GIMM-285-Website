@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 const upload = multer()
-const port = 80 //Default port to http server
+const port = 8080 //Default port to http server
 
 //Get all artwork records with optional filtering
 app.get(
@@ -220,5 +220,5 @@ app.put(
 );
 
 app.listen(port, () => {
-    console.log(`Application listening at http://localhost:${port}`);
+    console.log("Server running on port ${port}");
 });
